@@ -76,6 +76,22 @@ public class PlayerHealth : MonoBehaviour
         {
             health++;
             other.gameObject.SetActive(false);
+        }        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            health--;
+            this.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up, ForceMode2D.Impulse);
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up, ForceMode2D.Impulse);
+        }
+
+        if (other.gameObject.CompareTag("EnemyAxe"))
+        {
+            health--;
+            Destroy(other.gameObject);
         }
     }
 }
