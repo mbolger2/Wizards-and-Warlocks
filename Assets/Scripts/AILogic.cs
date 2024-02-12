@@ -20,6 +20,9 @@ public class AILogic : MonoBehaviour
     // For waypoint swapping
     private Transform lastWaypoint;
 
+    // Enemy health
+    public int enemyHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +33,10 @@ public class AILogic : MonoBehaviour
     void Update()
     {
         // If the player comes within 15 units of the enemy
-        if (player.transform.position.x > transform.position.x - 15 &&
-            player.transform.position.x < transform.position.x + 15 &&
-            player.transform.position.y > transform.position.y - 15 &&
-            player.transform.position.y < transform.position.y + 15)
+        if (player.transform.position.x > transform.position.x - 7 &&
+            player.transform.position.x < transform.position.x + 7 &&
+            player.transform.position.y > transform.position.y - 7 &&
+            player.transform.position.y < transform.position.y + 7)
         {
             distance = Vector2.Distance(transform.position, player.transform.position);
             Vector2 direction = player.transform.position - transform.position;
@@ -68,6 +71,11 @@ public class AILogic : MonoBehaviour
                 transform.position = Vector2.MoveTowards(this.transform.position, waypoint1.transform.position, speed * Time.deltaTime);
             }
         }
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -75,7 +83,17 @@ public class AILogic : MonoBehaviour
         if (other.gameObject.CompareTag("Spell"))
         {
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            enemyHealth--;
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
+        }
+
+        else if (other.gameObject.CompareTag("Spell2"))
+        {
+            Destroy(other.gameObject);
+            enemyHealth -= 5;
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
         }
     }
 }

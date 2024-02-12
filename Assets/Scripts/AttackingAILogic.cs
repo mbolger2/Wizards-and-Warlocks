@@ -28,6 +28,8 @@ public class AttackingAILogic : MonoBehaviour
     public bool canFire;
     private float timeBetweenFiring = 3;
 
+    public int enemyHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +103,11 @@ public class AttackingAILogic : MonoBehaviour
                 transform.position = Vector2.MoveTowards(this.transform.position, waypoint1.transform.position, speed * Time.deltaTime);
             }
         }
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -110,7 +117,17 @@ public class AttackingAILogic : MonoBehaviour
         if (other.gameObject.CompareTag("Spell"))
         {
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            enemyHealth--;
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
+        }
+
+        else if (other.gameObject.CompareTag("Spell2"))
+        {
+            Destroy(other.gameObject);
+            enemyHealth -= 5;
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
         }
     }
 }

@@ -14,6 +14,8 @@ public class PlayerShoot : MonoBehaviour
     private float timer;
     private float timeBetweenFiring = 0;
 
+    public GameObject cursor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         target = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        cursor.transform.position = target;
 
         Vector3 rotation = target - transform.position;
 

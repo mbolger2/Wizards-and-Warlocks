@@ -84,14 +84,14 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             health--;
-            this.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up, ForceMode2D.Impulse);
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up, ForceMode2D.Impulse);
         }
 
         if (other.gameObject.CompareTag("EnemyAxe"))
         {
             health--;
             Destroy(other.gameObject);
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
         }
     }
 }

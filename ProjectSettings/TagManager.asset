@@ -8,6 +8,7 @@ TagManager:
   - HealthPickup
   - Enemy
   - EnemyAxe
+  - Spell2
   layers:
   - Default
   - TransparentFX
