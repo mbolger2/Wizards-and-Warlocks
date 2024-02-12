@@ -7,11 +7,26 @@ public class RoomManager : MonoBehaviour
 {
     // use lists of tilemaps for the doors then iterate through with for loop to set false and active, 
     // this takes care of door opening combos
-    public GameObject doorsShut;
+    public List<GameObject> doorsShut;
+    public List<GameObject> doorsOpen;
+    //public GameObject doorsShut;
 
-    public GameObject doorsOpen;
+    //public GameObject doorsOpen;
 
     public int enemyCount;
+
+    void Start()
+    {
+        for (int i = 0; i < doorsShut.Count; i++)
+        {
+            doorsShut[i].SetActive(true);
+        }
+
+        for (int i = 0;i < doorsOpen.Count;i++)
+        {
+            doorsOpen[i].SetActive(false);
+        }
+    }
 
     void OnTriggerExit2D(Collider2D other)
     {
@@ -21,8 +36,15 @@ public class RoomManager : MonoBehaviour
 
             if (enemyCount == 0)
             {
-                doorsShut.SetActive(false);
-                doorsOpen.SetActive(true);
+                for (int i = 0; i < doorsShut.Count; i++)
+                {
+                    doorsShut[i].SetActive(false);
+                }
+
+                for (int i = 0; i < doorsOpen.Count; i++)
+                {
+                    doorsOpen[i].SetActive(true);
+                }
             }
         }
     }

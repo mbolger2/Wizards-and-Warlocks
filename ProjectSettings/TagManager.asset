@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyAxe
   - Spell2
+  - Walls
   layers:
   - Default
   - TransparentFX

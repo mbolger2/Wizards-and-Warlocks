@@ -30,7 +30,7 @@ public class AxeScript : MonoBehaviour
 
         if (time > lifeTime)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

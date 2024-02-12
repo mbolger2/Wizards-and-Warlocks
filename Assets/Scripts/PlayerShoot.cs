@@ -20,7 +20,6 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();   
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
