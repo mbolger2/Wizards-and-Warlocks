@@ -9,7 +9,7 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene("winMenu");
         }
     }
 }
