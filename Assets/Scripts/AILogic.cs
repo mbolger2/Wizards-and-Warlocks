@@ -33,10 +33,10 @@ public class AILogic : MonoBehaviour
     void Update()
     {
         // If the player comes within 15 units of the enemy
-        if (player.transform.position.x > transform.position.x - 7 &&
-            player.transform.position.x < transform.position.x + 7 &&
-            player.transform.position.y > transform.position.y - 7 &&
-            player.transform.position.y < transform.position.y + 7)
+        if (player.transform.position.x > transform.position.x - 10 &&
+            player.transform.position.x < transform.position.x + 10 &&
+            player.transform.position.y > transform.position.y - 10 &&
+            player.transform.position.y < transform.position.y + 10)
         {
             distance = Vector2.Distance(transform.position, player.transform.position);
             Vector2 direction = player.transform.position - transform.position;
